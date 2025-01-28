@@ -16,8 +16,8 @@ export async function POST(req) {
             port: 587,             // SMTP port
             secure: false,  // Use TLS
             auth: {
-                user: "himanshu26198@gmail.com", // Your email address
-                pass: "xhwm dnbx tetr xawj"
+                user: "akashrajpp1@gmail.com", // Your email address
+                pass: "hmlw iaee sjtc pxii"
                 , // Your email password or app-specific password
             },
         });
