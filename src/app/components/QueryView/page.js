@@ -74,7 +74,7 @@ const QueryView = ({ item }) => {
     }
 
     return <>
-        <div id="queryContainer" className="query_popup" style={{ position: "fixed", display: "none" }} >
+        { item && <div id="queryContainer" className="query_popup" style={{ position: "fixed", display: "none" }} >
             <div className="content_container"  >
                 <div className="query_item_container" >
                     <div> <p style={{ textDecoration: "underline", cursor: "pointer" }} onClick={closePopup} >Close</p> </div>
@@ -204,7 +204,7 @@ const QueryView = ({ item }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>}
     </>
 }
 
