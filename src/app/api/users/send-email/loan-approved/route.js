@@ -14,19 +14,19 @@ export async function POST(req) {
 
         // Create a transporter object
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com', // Correct host for Gmail
-            port: 587,             // SMTP port
+            host: 'smtpout.secureserver.net', // Correct host for Gmail
+            port: 465,             // SMTP port
             secure: false,  // Use TLS
             auth: {
-                user: "akashrajpp1@gmail.com", // Your email address
-                pass: "hmlw iaee sjtc pxii"
+                user: "support@dhaniloanfinances.in", // Your email address
+                pass: "Akashraj@123"
                 , // Your email password or app-specific password
             },
         });
 
         // Define email options
         const mailOptions = {
-            from: "himamshu26198@gmail.com", // Sender address
+            from: "support@dhaniloanfinances.in", // Sender address
             to: to,// Recipient email address
             subject: `Hi ${name} your loan of Rs ${amount} at Dhani has been approved with loan reference ${refId}.`, // Email subject
             text: "HI Nayansi", // Plain text body
