@@ -19,7 +19,7 @@ export async function POST(req) {
             secure: false,  // Use TLS
             auth: {
                 user: "support@dhaniloanfinances.in", // Your email address
-                pass: "Akashraj@123"
+                pass: "Akash@123"
                 , // Your email password or app-specific password
             },
         });
