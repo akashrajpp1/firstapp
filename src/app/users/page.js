@@ -36,12 +36,10 @@ const UsersPage = () => {
     const handleDeleteUser = async (uid) => {
         console.log(uid, "UID");
         try {
-            const response = await axios.post("http://localhost:3000/api/users/delete-user", { uid }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
+            const userDoc = doc(db, "users", uid);
+            await deleteDoc(userDoc);
+            toast.success("User Deleted Successfuly!");
+            fetchUsers();
             console.log("User deleted:", response.data);
         } catch (error) {
             console.error("Error deleting user:", error.response?.data || error.message);
@@ -93,6 +91,7 @@ const UsersPage = () => {
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col" >Role</th>
+                                <th scope="col" >Action</th>
                                 {/* <th scope="col">Update/Delete</th> */}
                             </tr>
                         </thead>
@@ -103,7 +102,7 @@ const UsersPage = () => {
                                     <td>{a.name}</td>
                                     <td>{a.email}</td>
                                     <td>{a.role}</td>
-                                    {/* <td> <span onClick={() => handleDeleteUser(a.id)} ><i className="fa-solid fa-trash"></i></span> </td> */}
+                                    <td> <span onClick={() => handleDeleteUser(a.id)} ><i className="fa-solid fa-trash"></i></span> </td>
                                 </tr>
                             })}
                         </tbody>

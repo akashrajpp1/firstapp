@@ -27,22 +27,26 @@ const CreateUser = ({ trackChange }) => {
             toast.error("Please select a role!")
         }
         else {
-            password = passwordRef.current.value;
-            let newUserData = { displayName: firstNameRef.current.value + " " + lastNameRef.current.value, email: emailRef.current.value, password: passwordRef.current.value };
-            let newUser = await createUserWithEmailAndPassword(auth, newUserData.email, newUserData.password);
-            let user = newUser.user
-            await updateProfile(user, {
-                displayName: newUserData.displayName
-            });
-            let docRf = doc(db, "users", user.uid);
-            await setDoc(docRf, {
-                name: newUserData.displayName,
-                email: newUserData.email,
-                role: role
-            })
-            trackChange(newUser);
-            toast.success("User created successfully!");
-            document.getElementById("createuserpopup").style.display = "none"
+            try {
+                password = passwordRef.current.value;
+                let newUserData = { displayName: firstNameRef.current.value + " " + lastNameRef.current.value, email: emailRef.current.value, password: passwordRef.current.value };
+                let newUser = await createUserWithEmailAndPassword(auth, newUserData.email, newUserData.password);
+                let user = newUser.user
+                await updateProfile(user, {
+                    displayName: newUserData.displayName
+                });
+                let docRf = doc(db, "users", user.uid);
+                await setDoc(docRf, {
+                    name: newUserData.displayName,
+                    email: newUserData.email,
+                    role: role
+                })
+                trackChange(newUser);
+                toast.success("User created successfully!");
+                document.getElementById("createuserpopup").style.display = "none"
+            } catch (err) {
+                console.log("Error in creating user!", err)
+            }
         }
     };
 
@@ -102,8 +106,8 @@ const CreateUser = ({ trackChange }) => {
                                 <strong>Select Role</strong>
                                 <select onChange={(e) => setRole(e.target.value)} >
                                     <option value="" >Select Role</option>
-                                    <option admin="admin">Admin</option>
-                                    <option admin="user" >User</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="user" >User</option>
                                 </select>
                             </div>
 
