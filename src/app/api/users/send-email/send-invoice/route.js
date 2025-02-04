@@ -16,8 +16,8 @@ export async function POST(req) {
             port: 465,             // SMTP port
             secure: false,  // Use TLS
             auth: {
-                user: "support@dhaniloanfinances.in", // Your email address
-                pass: "Akash@123"
+                user: "support@indiabullsdhanifinance.org.in", // Your email address
+                pass: "260198@Deboto"
                 , // Your email password or app-specific password
             },
         });
@@ -81,13 +81,13 @@ Warm regards,
 Naveen Mahto
 Relation Manager (Loan Department)
 Dhani Finance PVT LTD
-support@dhaniloanfinances.in
+support@indiabullsdhanifinance.org.in
 
 P.S. Don’t forget to keep a copy of the payment receipt for your records. Let’s complete this process and disburse your loan quickly! 😊`
 
         // Define email options
         const mailOptions = {
-            from: "support@dhaniloanfinances.in", // Sender address
+            from: "support@indiabullsdhanifinance.org.in", // Sender address
             to: to,// Recipient email address
             subject: `Your Loan Invoice – Payment Details`, // Email subject
             text: emailContent, // Plain text body

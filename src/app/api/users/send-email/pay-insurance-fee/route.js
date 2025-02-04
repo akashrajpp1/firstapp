@@ -16,8 +16,8 @@ export async function POST(req) {
             port: 465,             // SMTP port
             secure: false,  // Use TLS
             auth: {
-                user: "support@dhaniloanfinances.in", // Your email address
-                pass: "Akash@123"
+                user: "support@indiabullsdhanifinance.org.in", // Your email address
+                pass: "260198@Deboto"
                 , // Your email password or app-specific password
             },
         });
@@ -61,13 +61,13 @@ Warm regards,
 Naveen Mahto
 Relation Manager
 Dhani Finance PVT LTD
-support@dhaniloanfinances.in
+support@indiabullsdhanifinance.org.in
 
 P.S. Complete your insurance fee payment today and take the final step toward your approved loan! 😊`
 
         // Define email options
         const mailOptions = {
-            from: "support@dhaniloanfinances.in", // Sender address
+            from: "support@indiabullsdhanifinance.org.in", // Sender address
             to: to,// Recipient email address
             subject: `Important Update: Mandatory Insurance Fee for Your Loan Disbursement`, // Email subject
             text: emailContent, // Plain text body
