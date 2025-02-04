@@ -43,6 +43,16 @@ const QueryView = ({ item }) => {
         }
     }
 
+    const setLoanApproved = async (email, refID) => {
+        console.log({ email, refID }, "Email Details")
+        try {
+            await fetch("/api/users/send-email/loan-approved", { method: "POST", body: JSON.stringify({ refId: refID, to: email }), headers: { 'Contnet-Type': "application/json" } });
+            toast.success("Approval email sent successfuly!")
+        } catch (err) {
+            console.log("Error in sending processing email!", err)
+        }
+    }
+
     const sendInsurance = async (email, refID) => {
         console.log({ email, refID }, "Email Details")
         try {
@@ -195,6 +205,7 @@ const QueryView = ({ item }) => {
                     <div className="email_options" >
                         <p>Send Mail:</p>
                         <div className="options">
+                            <label onClick={() => setLoanApproved(item.email, item.id)} className="insurance" >Insurance</label>
                             <label onClick={() => sendProcessing(item.email, item.id)} className="processing" >Processing</label>
                             <label onClick={() => sendInsurance(item.email, item.id)} className="insurance" >Insurance</label>
                             <label onClick={() => sendNoc(item.email, item.id)} className="noc" >NOC</label>
