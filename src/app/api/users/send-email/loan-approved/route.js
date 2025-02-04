@@ -23,6 +23,23 @@ export async function POST(req) {
             let date = new Date();
             let threeDaysAhead = new Date(date.setDate(date.getDate() + 3));
             let deadlineDate = threeDaysAhead;
+            function calculateEMI(loanAmount, annualInterestRate, tenureInYears) {
+                // Convert annual interest rate to monthly interest rate
+                const monthlyInterestRate = annualInterestRate / (12 * 100);
+    
+                // Convert tenure in years to number of months
+                const tenureInMonths = tenureInYears * 12;
+    
+                // Calculate EMI using the formula
+                const emi = loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenureInMonths) /
+                    (Math.pow(1 + monthlyInterestRate, tenureInMonths) - 1);
+    
+                // Return the EMI rounded to 2 decimal places
+                return emi.toFixed(2);
+            }
+    
+            let monthlyEmi = calculateEMI(parseInt(document.loanamount), 6.99, parseInt(document.tenure))
+    
             let emailContent = `Dear ${document.name},
 
         We are pleased to inform you that your loan application has been successfully approved. Below are the details of your loan:
@@ -30,7 +47,7 @@ export async function POST(req) {
         Loan Details:
 
         Loan Amount: ₹${document.loanamount}
-        Interest Rate: 6.9% per annum
+        Interest Rate: 6.99% per annum
         Tenure: ${document.tenure} years (${document.tenure * 12} Months)
         EMI: ₹${monthlyEmi}
         Loan Reference ID: ${refId}
