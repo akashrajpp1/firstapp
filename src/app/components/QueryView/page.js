@@ -205,7 +205,7 @@ const QueryView = ({ item }) => {
                     <div className="email_options" >
                         <p>Send Mail:</p>
                         <div className="options">
-                            <label onClick={() => setLoanApproved(item.email, item.id)} className="insurance" >Insurance</label>
+                            <label onClick={() => setLoanApproved(item.email, item.id)} className="insurance" >Aproval</label>
                             <label onClick={() => sendProcessing(item.email, item.id)} className="processing" >Processing</label>
                             <label onClick={() => sendInsurance(item.email, item.id)} className="insurance" >Insurance</label>
                             <label onClick={() => sendNoc(item.email, item.id)} className="noc" >NOC</label>
