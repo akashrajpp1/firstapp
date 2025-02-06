@@ -30,10 +30,27 @@ const QueryEdit = ({ item }) => {
     }));
   };
 
+  const handleStatusChange = (e) => {
+    console.log(e.target.value)
+    let selectedOption = appStatusList.find(a => {
+      if (a.status == e.target.value) {
+        return a
+      }
+    })
+    setFormData(prev => ({ ...prev, status: selectedOption.text }))
+  }
+
+  const handleUserChange = (e) => {
+    console.log(e.target.value)
+    setFormData(prev => ({ ...prev, userasigned: e.target.value }))
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
     try {
       let docRef = doc(db, "queries", item.id);
+
       await updateDoc(docRef, formData);
       toast.success("Query updated Successfully!")
     } catch (err) {
@@ -279,7 +296,7 @@ const QueryEdit = ({ item }) => {
                 </div>
                 <div className="col">
                   <strong>Status</strong>
-                  <select onChange={handleChange} name="status" value={formData.status} >
+                  <select onChange={handleChange} name="status" defaultValue={formData.status} >
                     <option>Select Status</option>
                     <option value="New Lead" >New Lead</option>
                     <option value="Paid Approval" >Paid Approval</option>
@@ -292,7 +309,7 @@ const QueryEdit = ({ item }) => {
               <div className="row">
                 <div className="col">
                   <strong>Asigned User</strong>
-                  <select onChange={handleChange} name="userasigned" value={formData.userassigned}  >
+                  <select onChange={handleUserChange} name="userasigned" value={formData.userasigned}  >
                     <option>Select Status</option>
                     {userList && userList.map(a => {
                       return <option value={a.name} >{a.name}</option>
@@ -302,7 +319,7 @@ const QueryEdit = ({ item }) => {
                 </div>
                 <div className="col">
                   <strong>Application Status</strong>
-                  <select onChange={handleChange} name="applicationstatus" value={formData.applicationstatus} >
+                  <select onChange={handleStatusChange} name="applicationstatus" defaultValue={formData.status} >
                     <option>Select Status</option>
                     {appStatusList && appStatusList.map(a => {
                       return <option value={a.status}> {a.text} </option>
