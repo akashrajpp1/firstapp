@@ -17,7 +17,7 @@ const QueryEdit = ({ item }) => {
   };
   const appStatusList = [
     { status: "application_received", text: "Application Received", active: true },
-    { status: "under_process", text: "Application Under Process", active: false },
+    { status: "under_process", text: "Under Process", active: false },
     { status: "pay_processing", text: "Pay Processing", active: false },
     { status: "loan_approved", text: "Loan Approved", active: false },
     { status: "loan_disbursed", text: "Loan Disburser", active: false }
