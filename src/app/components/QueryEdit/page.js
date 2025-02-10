@@ -20,7 +20,7 @@ const QueryEdit = ({ item }) => {
     { status: "under_process", text: "Under Process", active: false },
     { status: "pay_processing", text: "Pay Processing", active: false },
     { status: "loan_approved", text: "Loan Approved", active: false },
-    { status: "loan_disbursed", text: "Loan Disburser", active: false }
+    { status: "loan_disbursed", text: "Loan Disbursed", active: false }
   ]
   const handleChange = (e) => {
     const { name, value } = e.target;
