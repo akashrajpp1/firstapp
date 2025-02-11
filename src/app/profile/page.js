@@ -153,7 +153,7 @@ const ProfilePage = () => {
                                                 <div className="media" bis_skin_checked={1}>
                                                     <img
                                                         className="img-70 rounded-circle"
-                                                        src="https://indiadhaniservice.co.in/upload/admin_images/2024-11-20loo.png"
+                                                        src={profile.image}
                                                         alt=""
                                                     />
                                                     <div className="media-body" bis_skin_checked={1}>

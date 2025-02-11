@@ -10,9 +10,7 @@ import { error } from "console";
 
 const generateLoanApprovedPdf = async (htmlContent) => {
     try {
-        // Read the HTML file
-        const htmlFilePath = path.join(process.cwd(), "public", "approval-doc.html");
-        const htmlStr = fs.readFileSync(htmlFilePath, "utf8");
+
 
         // Generate the PDF
         let pdfPath = await generatePdf(htmlContent, "https://yourwebsite.com"); // Provide your base URL
