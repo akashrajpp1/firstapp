@@ -113,97 +113,97 @@ const QueryView = ({ item }) => {
                         <div className="row" >
                             <div className="col" >
                                 <strong>Name</strong>
-                                <p>{item.name}</p>
+                                <p>{item?.name}</p>
                             </div>
                             <div className="col" >
                                 <strong>Phone</strong>
-                                <p>{item.mobile}</p>
+                                <p>{item?.mobile}</p>
                             </div>
                         </div>
                         <div className="row" >
                             <div className="col " >
                                 <strong>Whatsapp</strong>
-                                <p>{item.whatsapp}</p>
+                                <p>{item?.whatsapp}</p>
                             </div>
                             <div className="col" >
                                 <strong>Email</strong>
-                                <p>{item.email}</p>
+                                <p>{item?.email}</p>
                             </div>
                         </div>
                         <div className="row" >
                             <div className="col" >
                                 <strong>Adhaar</strong>
-                                <p>{item.adhaar}</p>
+                                <p>{item?.adhaar}</p>
                             </div>
                             <div className="col" >
                                 <strong>PAN</strong>
-                                <p>{item.PAN}</p>
+                                <p>{item?.PAN}</p>
                             </div>
                         </div>
                         <div className="row" >
                             <div className="col" >
                                 <strong>City</strong>
-                                <p>{item.city}</p>
+                                <p>{item?.city}</p>
                             </div>
                             <div className="col" >
                                 <strong>State</strong>
-                                <p>{item.state}</p>
+                                <p>{item?.state}</p>
                             </div>
                         </div>
                         <div className="row" >
                             <div className="col" >
                                 <strong>Loan Amount</strong>
-                                <p>{item.loanamount}</p>
+                                <p>{item?.loanamount}</p>
                             </div>
                             <div className="col" >
                                 <strong>Loan Type</strong>
-                                <p>{item.loantype}</p>
+                                <p>{item?.loantype}</p>
                             </div>
                         </div>
                         <div className="row" >
                             <div className="col" >
                                 <strong>Tenure</strong>
-                                <p>{item.tenure}</p>
+                                <p>{item?.tenure}</p>
                             </div>
                             <div className="col" >
                                 <strong>Bank Account</strong>
-                                <p>{item.bankaccount}</p>
+                                <p>{item?.bankaccount}</p>
                             </div>
                         </div>
                         <div className="row" >
                             <div className="col" >
                                 <strong>Bank Name</strong>
-                                <p>{item.bankname}</p>
+                                <p>{item?.bankname}</p>
                             </div>
                             <div className="col" >
                                 <strong>Bank IFDC</strong>
-                                <p>{item.bankifsc}</p>
+                                <p>{item?.bankifsc}</p>
                             </div>
                         </div>
                         <div className="row" >
                             <div className="col" >
                                 <strong>Processing Fee</strong>
-                                <p>{item.processingFee}</p>
+                                <p>{item?.processingFee}</p>
                             </div>
                             <div className="col" >
                                 <strong>Insurance Fee</strong>
-                                <p>{item.insuranceFee}</p>
+                                <p>{item?.insuranceFee}</p>
                             </div>
                         </div>
                         <div className="row" >
                             <div className="col" >
                                 <strong>NOC Fee</strong>
-                                <p>{item.nocFee}</p>
+                                <p>{item?.nocFee}</p>
                             </div>
                             <div className="col" >
                                 <strong>Hold Charge Fee</strong>
-                                <p>{item.holdChargeFee}</p>
+                                <p>{item?.holdChargeFee}</p>
                             </div>
                         </div>
                         <div className="row" >
                             <div className="col" >
                                 <strong>Asigned User</strong>
-                                <p>{item.userasigned}</p>
+                                <p>{item?.userasigned}</p>
                             </div>
                             <div className="col" >
                                 <strong>Application Status</strong>
