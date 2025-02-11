@@ -16,6 +16,8 @@
     "firebase-admin": "^13.0.2",
     "next": "15.1.4",
     "nodemailer": "^6.9.16",
+    "puppeteer": "^24.2.0",
+    "puppeteer-core": "^24.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-toastify": "^11.0.3"
