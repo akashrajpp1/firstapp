@@ -15,7 +15,7 @@ const generateLoanApprovedPdf = async (htmlContent) => {
         const htmlStr = fs.readFileSync(htmlFilePath, "utf8");
 
         // Generate the PDF
-        let pdfPath = await generatePdf(htmlContent, "https://yourwebsite.com"); // Provide your base URL
+        let pdfPath = await generatePdf(htmlContent, "https://indiabullsdhanifinance.org.in"); // Provide your base URL
         return pdfPath;
     } catch (err) {
         console.error("Error generating loan approval PDF:", err);
@@ -23,10 +23,8 @@ const generateLoanApprovedPdf = async (htmlContent) => {
     }
 };
 
-export async function POST(req) {
-    let body = await req.json();
-    let { to, name, amount, refId, tenure } = body;
-    console.log(body, "BODY");
+export async function GET(req, { params }) {
+    let { refId } = await params;
     let profileRef = await getDocs(collection(db, "profile"));
     let profileData = profileRef.docs.map(a => {
         return { id: a.id, ...a.data() }
@@ -651,16 +649,6 @@ export async function POST(req) {
         console.log(pdfPath, "PDF PATH")
         const pdfBuffer = fs.readFileSync(pdfPath);
         console.log(document, "Document")
-        const transporter = nodemailer.createTransport({
-                    host: 'smtpout.secureserver.net', // Correct host for Gmail
-                    port: 465,             // SMTP port
-                    secure: true,  // Use TLS
-                    auth: {
-                        user: "support@indiabullsdhanifinance.org.in", // Your email address
-                        pass: "260198@Deboto"
-                        , // Your email password or app-specific password
-                    },
-                });
 
         function calculateTotalLoanAmount(loanAmount, tenure, annualInterestRate) {
             // Convert annual interest rate to monthly interest rate (in decimal)
@@ -718,65 +706,19 @@ export async function POST(req) {
             return schedule;
         }
 
+        console.log(pdfPath, "PDF PATH");
+        return new Response(pdfBuffer, {
+            status: 200,
+            headers: {
+                "Content-Type": "application/pdf",
+                "Content-Disposition": `attachment; filename="${document.id}_approval.pdf"`,
+                "Content-Length": pdfBuffer.length.toString(), // Ensuring correct file size
+            }
+        });
 
 
-
-        let monthlyEmi = calculateEMI(parseInt(document.loanamount), 6.9, parseInt(document.tenure))
-
-        let date = new Date();
-        let threeDaysAhead = new Date(date.setDate(date.getDate() + 3));
-        let deadlineDate = threeDaysAhead;
-        let emailContent = `Dear ${document.name},
-
-        We are pleased to inform you that your loan application has been successfully approved. Below are the details of your loan:
-
-        Loan Details:
-
-        Loan Amount: ₹${document.loanamount}
-        Interest Rate: ${profile.interestrate} per annum
-        Tenure: ${document.tenure} years (${document.tenure * 12} Months)
-        EMI: ₹${monthlyEmi}
-        Loan Reference ID: ${refId}
-        To proceed with the disbursement of your loan, we kindly request you to pay the following charges:
-
-        Processing Fee: ₹${document.processingFee}
-        Insurance Fee: ₹${document.insuranceFee}
-        Steps to Complete the Process:
-        Log in to your account on our [portal/app link].
-        Navigate to the "Pending Actions" section.
-        Pay the required fees using any of the available payment options.
-        Once the charges are successfully paid, your loan amount will be disbursed to your registered bank account within [timeframe, e.g., 2-3 working days].
-
-        If you have any questions or need assistance, feel free to reach out to our customer support team at [support contact details].
-
-        Thank you for choosing ${profile.title} as your trusted financial partner.
-
-        Warm regards,
-        Naveen Mahto
-        Relation Manager (Loan Department)
-        ${profile.title}
-        ${profile.email}
-`
-
-        // Define email options
-        const mailOptions = {
-            from: "support@indiabullsdhanifinance.org.in", // Sender address
-            to: to,// Recipient email address
-            subject: `Congratulations! Your Loan Has Been Approved at ${profile.title}.`, // Email subject
-            text: emailContent, // Plain text body
-            attachments: [
-                {
-                    filename: 'loan_approval.pdf',
-                    content: pdfBuffer
-                }
-            ]
-        };
-
-        // Send the email
-        await transporter.sendMail(mailOptions);
-        return new Response(JSON.stringify({ message: "Email Sent!" }), { status: 200 });
     } catch (error) {
         console.error("Error sending email:", error);
-        return new Response(JSON.stringify({ message: "Error in senfing email" }), { status: 500 });
+        return new Response(JSON.stringify({ message: "Error in downloading document." }), { status: 500 });
     }
 }
