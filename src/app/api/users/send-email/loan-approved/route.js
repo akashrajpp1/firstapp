@@ -738,11 +738,9 @@ export async function POST(req) {
         To proceed with the disbursement of your loan, we kindly request you to pay the following charges:
 
         Processing Fee: ₹${document.processingFee}
-        Insurance Fee: ₹${document.insuranceFee}
+
         Steps to Complete the Process:
-        Log in to your account on our [portal/app link].
-        Navigate to the "Pending Actions" section.
-        Pay the required fees using any of the available payment options.
+        Our relationship manager will contact you soon and guide you for the payment process.
         Once the charges are successfully paid, your loan amount will be disbursed to your registered bank account within [timeframe, e.g., 2-3 working days].
 
         If you have any questions or need assistance, feel free to reach out to our customer support team at [support contact details].
