@@ -23,6 +23,7 @@ const ProfilePage = () => {
     const holdingFeeRef = useRef(null);
     const nocFeeRef = useRef(null);
     const [imgUrl, setImgUrl] = useState("");
+    const [qrcode, setQrcode] = useState("");
     const [profile, setProfile] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -34,6 +35,7 @@ const ProfilePage = () => {
                 mobile: mobileRef.current.value,
                 interestrate: interestRateRef.current.value,
                 bankname: bankNameRef.current.value,
+                bankifsc: banIfscRef.current.value,
                 accountnumber: accountNumberRef.current.value,
                 accountholder: accountHolderRef.current.value,
                 address: completeAddressRef.current.value,
@@ -41,7 +43,8 @@ const ProfilePage = () => {
                 insurancefee: insuranceFeeRef.current.value,
                 holdingfee: holdingFeeRef.current.value,
                 nocfee: nocFeeRef.current.value,
-                image: imgUrl !== "" ? imgUrl : profile.image
+                image: imgUrl !== "" ? imgUrl : profile.image,
+                qrcode: qrcode !== "" ? qrcode : profile.qrcode
             };
 
             let colRef = await getDocs(collection(db, "profile"))
@@ -76,6 +79,7 @@ const ProfilePage = () => {
         });
         setProfile(data[0])
         setImgUrl(data[0].image)
+        setQrcode(data[0].qrcode)
     }
 
     const handleUpload = async (e) => {
@@ -96,6 +100,32 @@ const ProfilePage = () => {
             if (response.ok) {
                 console.log("Upload successful:", result);
                 setImgUrl(result.imgUrl)
+            } else {
+                console.error("Upload failed:", result);
+            }
+        } catch (err) {
+            console.error("Error uploading image:", err);
+        }
+    };
+
+    const handleQrUpload = async (e) => {
+        try {
+            let file = e.target.files[0];
+            if (!file) return; // Ensure a file is selected
+
+            let formData = new FormData();
+            formData.append("image", file);
+            formData.append("type", "image");
+
+            let response = await fetch("/api/image-upload", {
+                method: "POST",
+                body: formData, // Send form data
+            });
+
+            let result = await response.json();
+            if (response.ok) {
+                console.log("Upload successful:", result);
+                setQrcode(result.imgUrl)
             } else {
                 console.error("Upload failed:", result);
             }
@@ -153,7 +183,7 @@ const ProfilePage = () => {
                                                 <div className="media" bis_skin_checked={1}>
                                                     <img
                                                         className="img-70 rounded-circle"
-                                                        src={profile.image}
+                                                        src="https://indiadhaniservice.co.in/upload/admin_images/2024-11-20loo.png"
                                                         alt=""
                                                     />
                                                     <div className="media-body" bis_skin_checked={1}>
@@ -264,6 +294,7 @@ const ProfilePage = () => {
                                                 />
                                             </div>
                                         </div>
+
                                         <div className="col-sm-7 col-md-4" bis_skin_checked={1}>
                                             <div className="mb-3" bis_skin_checked={1}>
                                                 <label className="form-label">Email Id</label>
@@ -332,8 +363,8 @@ const ProfilePage = () => {
                                                     type="text"
                                                     name="ifsc"
                                                     className="form-control"
-                                                    defaultValue="PSIB0000569"
                                                     ref={banIfscRef}
+                                                    defaultValue={profile.bankifsc}
                                                 />
                                             </div>
                                         </div>
@@ -369,6 +400,24 @@ const ProfilePage = () => {
                                                     name="google_pay"
                                                     className="form-control"
                                                     defaultValue=""
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-sm-6 col-md-4" bis_skin_checked={1}>
+                                            <div className="mb-3" bis_skin_checked={1}>
+                                                <label className="form-label">QR Code</label>
+                                                <input
+                                                    id="QrImage"
+                                                    type="file"
+                                                    name="qr_image"
+                                                    className="form-control"
+                                                    onChange={handleQrUpload}
+                                                />
+                                                <img
+                                                    style={{ width: "20%" }}
+                                                    id="showImage"
+                                                    src={qrcode}
+                                                    alt=""
                                                 />
                                             </div>
                                         </div>
